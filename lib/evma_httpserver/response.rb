@@ -92,16 +92,24 @@ module EventMachine
       505 => "505 HTTP Version Not Supported"
     }
 
-    attr_accessor :status, :headers, :chunks, :multiparts
+    attr_accessor :status, :headers, :content, :chunks, :multiparts
 
     def initialize
       @headers = {}
     end
 
-    def content=(value) @content = value.to_s end
-    def content()       @content || ''        end
-    def content?()      !!@content            end
+    def content= value
+      @content = value.to_s
+    end
+ 
+    def content
+      @content || ''
+    end
 
+    def content?
+      !!@content
+    end
+ 
     def keep_connection_open arg=true
       @keep_connection_open = arg
     end
