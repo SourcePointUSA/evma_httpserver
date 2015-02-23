@@ -75,7 +75,7 @@ class HttpConnection_t
 		enum {
 			MaxLeadingBlanks = 12,
 			MaxHeaderLineLength = 8 * 1024,
-			MaxContentLength = 20 * 1024 * 1024,
+			MaxContentLength = 200 * 1024 * 1024,
 			HeaderBlockSize = 16 * 1024
 		};
 		int nLeadingBlanks;
