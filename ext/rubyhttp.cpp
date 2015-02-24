@@ -256,7 +256,7 @@ t_process_http_request
 static VALUE t_process_http_request (VALUE self)
 {
 	// This is a stub in case the caller doesn't define it.
-	rb_funcall (self, rb_intern ("send_data"), 1, rb_str_new2 ("HTTP/1.1 200 OK\r\nContent-type: text/plain\r\nContent-length: 8\r\n\r\nMonorail"));
+	rb_funcall (self, rb_intern ("send_data"), 1, rb_str_new2 ("HTTP/1.1 200 ...\r\nContent-type: text/plain\r\nContent-length: 8\r\n\r\nMonorail"));
 	return Qnil;
 }
 
@@ -290,7 +290,7 @@ t_get_max_content_length
 
 static VALUE t_get_max_content_length (VALUE self)
 {
-	RubyHttpConnection_t *hc = (RubyHttpConnection_t*)(NUM2LONG (rb_ivar_get (self, Intern_http_conn)));
+	RubyHttpConnection_t *hc = t_get_http_connection (self);
 	if (hc)
 		return INT2FIX (hc->GetMaxContentLength());
 		
@@ -303,7 +303,7 @@ t_set_max_content_length
 
 static VALUE t_set_max_content_length (VALUE self, VALUE data)
 {
-	RubyHttpConnection_t *hc = (RubyHttpConnection_t*)(NUM2LONG (rb_ivar_get (self, Intern_http_conn)));
+	RubyHttpConnection_t *hc = t_get_http_connection (self);
 	if (hc) {
 		hc->SetMaxContentLength(FIX2INT(data));
 		return INT2FIX (hc->GetMaxContentLength());
