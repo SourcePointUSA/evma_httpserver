@@ -425,7 +425,7 @@ bool HttpConnection_t::_InterpretHeaderLine (const char *header)
 	}
 	else {
 		// TODO, log this.
-		_SendError (RESPONSE_CODE_406);
+		_SendError (400, "Incorrect block size");
 		return false;
 	}
 
@@ -582,7 +582,7 @@ bool HttpConnection_t::_DetectVerbAndSetEnvString (const char *request, int verb
 		}
 	}
 
-	_SendError (RESPONSE_CODE_406);
+	_SendError (400, "Bad Request");
 	return false;
 }
 
