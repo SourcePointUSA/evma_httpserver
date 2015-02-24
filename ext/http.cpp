@@ -592,7 +592,7 @@ bool HttpConnection_t::_DetectVerbAndSetEnvString (const char *request, int verb
 HttpConnection_t::_SendError
 ****************************/
 
-void HttpConnection_t::_SendError (const char *header)
+void HttpConnection_t::_SendError (int code)
 {
     _SendError(code, "...");
 }
@@ -602,8 +602,9 @@ void HttpConnection_t::_SendError (int code, const char *desc)
 	stringstream ss;
 	ss << "HTTP/1.1 " << code << " " << desc << "\r\n";
 	ss << "Connection: close\r\n";
-	ss << "Content-Type: text/plain\r\n";
+	ss << "Content-type: text/plain\r\n";
 	ss << "\r\n";
+	ss << "Detected error: HTTP code " << code;
 
 	SendData (ss.str().c_str(), (int)ss.str().length());
 }
