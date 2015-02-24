@@ -20,8 +20,9 @@ namespace :build do
   end
   CLEAN.include('ext/Makefile')
   CLEAN.include('ext/*.log')
-  
-  libfile = "ext/eventmachine_httpserver.#{RbConfig::CONFIG['DLEXT']}"
+  CLEAN.include('ext/*.o')
+
+  libfile = "ext/eventmachine_httpserver.#{Config::CONFIG['DLEXT']}"
   file libfile => ['ext/Makefile', *sources] do
     Dir.chdir 'ext' do
       make = case RUBY_PLATFORM
