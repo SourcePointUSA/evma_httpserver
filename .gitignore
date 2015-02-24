@@ -1,8 +1,0 @@
-*.gem
-ext/Makefile
-ext/*.log
-ext/*.o
-ext/*.dll
-ext/*.bundle
-ext/*.so
-/evma_httpserver/nbproject/private/
