@@ -109,7 +109,7 @@ module EventMachine
 			@sent_headers = true
 
 			fixup_headers
-
+			@status_string = EM::HttpStatus.CODE[(@status || 200)]
 			ary = []
 			ary << "HTTP/1.1 #{@status || 200} #{@status_string || '...'}\r\n"
 			ary += generate_header_lines(@headers)
@@ -142,7 +142,7 @@ module EventMachine
 		#
 		def fixup_headers
 			if @content
-				@headers["Content-Length"] = @content.to_s.length
+				@headers["Content-Length"] = @content.bytesize
 			elsif @chunks
 				@headers["Transfer-Encoding"] = "chunked"
 				# Might be nice to ENSURE there is no content-length header,
