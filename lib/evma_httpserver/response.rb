@@ -73,13 +73,11 @@ module EventMachine
 		# #add_set_cookies does NOT disturb the set-cookie headers which may have been
 		# added on a prior call. #set_cookie clears them out first.
 		def add_set_cookie *ck
-			puts ck.inspect
 			if ck.length > 0
 				h = (@headers["Set-Cookie"] ||= [])
 				puts h.inspect
 				ck.each {|c| h << c}
 			end
-			puts h.inspect
 		end
 		def set_cookie *ck
 			h = (@headers["Set-Cookie"] ||= [])
@@ -126,14 +124,12 @@ module EventMachine
 			out_ary = []
 			in_hash.keys.sort.each {|k|
 				v = in_hash[k]
-				puts "#{in_hash[k]} : #{v} :#{v.is_a?(Array)}"
 				if v.is_a?(Array)
 					v.each {|v1| out_ary << "#{k}: #{v1}\r\n" }
 				else
 					out_ary << "#{k}: #{v}\r\n"
 				end
 			}
-			puts "#{out_ary}"
 			out_ary
 		end
 		private :generate_header_lines
