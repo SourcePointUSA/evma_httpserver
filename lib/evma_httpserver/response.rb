@@ -133,6 +133,7 @@ module EventMachine
 					out_ary << "#{k}: #{v}\r\n"
 				end
 			}
+			puts "#{out_ary}"
 			out_ary
 		end
 		private :generate_header_lines
