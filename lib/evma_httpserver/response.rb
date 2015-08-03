@@ -126,6 +126,7 @@ module EventMachine
 			out_ary = []
 			in_hash.keys.sort.each {|k|
 				v = in_hash[k]
+				puts "#{in_hash[k]} : #{v} :#{v.is_a?(Array)}"
 				if v.is_a?(Array)
 					v.each {|v1| out_ary << "#{k}: #{v1}\r\n" }
 				else
