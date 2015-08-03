@@ -73,10 +73,13 @@ module EventMachine
 		# #add_set_cookies does NOT disturb the set-cookie headers which may have been
 		# added on a prior call. #set_cookie clears them out first.
 		def add_set_cookie *ck
+			puts ck.inspect
 			if ck.length > 0
 				h = (@headers["Set-Cookie"] ||= [])
+				puts h.inspect
 				ck.each {|c| h << c}
 			end
+			puts h.inspect
 		end
 		def set_cookie *ck
 			h = (@headers["Set-Cookie"] ||= [])
